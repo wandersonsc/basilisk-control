@@ -27,7 +27,7 @@ if [ "${1:-}" = --universal ]; then
     intel_bin_dir=$(swift build -c release --arch x86_64 --show-bin-path)
     lipo -create "$arm_bin_dir/BasiliskControl" "$intel_bin_dir/BasiliskControl" \
         -output "$app_path/Contents/MacOS/BasiliskControl"
-    lipo -verify_arch arm64 x86_64 "$app_path/Contents/MacOS/BasiliskControl"
+    lipo "$app_path/Contents/MacOS/BasiliskControl" -verify_arch arm64 x86_64
 else
     swift build -c release --product BasiliskControl
     bin_dir=$(swift build -c release --show-bin-path)
