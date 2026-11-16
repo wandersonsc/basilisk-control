@@ -4,11 +4,13 @@ A native SwiftUI app for the **Razer Basilisk Ultimate**, with direct USB HID co
 
 [Build checks](https://github.com/wandersonsc/basilisk-control/actions) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Repository practices](docs/REPOSITORY_BEST_PRACTICES.md) · [MIT](LICENSE)
 
-**Delivery status:** initial hardware-testing version. Packet tests pass on Linux. GitHub Actions builds a universal macOS app, verifies its local signature, and checks that it launches; check the latest run for results. The HID transport and physical device behavior still need verification with your mouse. The app is not Apple notarized.
+**Delivery status:** initial version ready to try. The universal Apple Silicon/Intel app passed compilation, bundle metadata and local signature verification, and a native launch check in [this successful macOS build](https://github.com/wandersonsc/basilisk-control/actions/runs/43945853147). Packet tests pass on Linux and macOS. The HID transport and physical device behavior still need verification with your mouse. The app is not Apple notarized.
 
 ## Download a built app
 
 Open [GitHub Actions](https://github.com/wandersonsc/basilisk-control/actions/workflows/macos.yml) and select a successful **Native macOS build** run for `main`. Under **Artifacts**, download **Basilisk-Control-macOS-universal** while signed in to GitHub. Artifacts are retained for 30 days.
+
+The first verified build is available [here](https://github.com/wandersonsc/basilisk-control/actions/runs/43945853147/artifacts/14263559490) until December 16, 2026. For later builds, use the workflow page above.
 
 Extract the artifact, then extract `Basilisk-Control-macOS.zip` to get **Basilisk Control.app**. Move it to Applications. The universal executable supports Apple Silicon and Intel Macs running macOS 13+. The adjacent `.sha256` file contains its checksum; run `shasum -a 256 -c Basilisk-Control-macOS.zip.sha256` from the extracted artifact folder to check the download.
 
@@ -24,7 +26,7 @@ Requires **macOS 13 or newer**, and **Xcode 15+ command line tools with Swift 5.
 
    ```sh
    cd "/path/to/BasiliskControl"
-   chmod +x "Build App.command" test-protocol.sh
+   chmod +x "Build App.command" test-protocol.sh scripts/*.sh
    ./"Build App.command"
    ```
 

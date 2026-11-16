@@ -1,19 +1,30 @@
 Verification for Basilisk Control 0.1.0
 
-Passed in this Linux environment:
-- C packet tests: fixed wire fixtures, every DPI increment from 100 to 20,000,
-  polling rate encoding, brightness limits, malformed lengths and checksums,
-  busy/stale frames, and firmware errors.
-- Portable C sources compile with -Wall -Wextra -Werror -pedantic.
-- All five Swift source files parse without syntax errors using tree-sitter-swift.
-  Parsing does not check Swift types or macOS framework APIs.
-- Shell build script syntax and Info.plist structure validated.
-- ICNS icon file inspected.
+Verified build commit: 98871dedaebfcf074c676a7baffa0a10d9873fb1
+GitHub Actions: https://github.com/wandersonsc/basilisk-control/actions/runs/43945853147
 
-Not verified here:
-- Native macOS compilation, application launch, code signing, and UI rendering.
-- USB/HID access, firmware behavior, battery readings, or physical mouse controls.
-- Included macOS CI workflow has not been run.
+Passed:
+- Portable packet tests on Linux and macOS, including fixed wire fixtures,
+  all supported DPI increments, polling and brightness bounds, malformed
+  replies, checksum corruption, busy/stale frames, and firmware errors.
+- Native release compilation for Apple Silicon (arm64) and Intel (x86_64).
+- Universal executable architecture validation.
+- Application bundle Info.plist validation and ad-hoc signature verification.
+- Native launch smoke test on the macOS runner's host architecture: the app
+  remained running after five seconds, then the test terminated it.
+- Successful upload and download of the packaged app artifact.
+- Downloaded artifact checksum, nested ZIP checksum and integrity, executable
+  permissions, both Mach-O architecture slices, bundle identity and minimum
+  macOS version, and signature resource file.
 
-Build App.command runs the packet tests and compiles the app on your Mac.
-See README.md for setup, feature scope, and the first hardware test procedure.
+App ZIP SHA-256:
+8e193e7d024de325f29d5e98f5f0216cadc3c15eb78054fd0b024f819eff7957
+
+Not verified:
+- Physical mouse discovery, battery/charging values, DPI/polling behavior,
+  lighting results, sleeping/disconnecting behavior, or firmware compatibility.
+- Full visual/accessibility review or interaction with every control.
+- Native execution on an Intel Mac; that slice was compiled and inspected.
+- Apple Developer ID signing and notarization: the app is ad-hoc signed.
+
+See README.md for download, installation, and the first hardware checks.

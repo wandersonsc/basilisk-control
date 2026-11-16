@@ -19,4 +19,4 @@ Document user-visible changes here. Entries under Unreleased are not a published
 ### Verification
 
 - Portable packet tests passed on Linux during initial preparation.
-- Native macOS build status is available in GitHub Actions once a run completes. Physical mouse behavior still requires hardware testing.
+- Apple Silicon and Intel release builds, universal binary validation, bundle metadata, ad-hoc signing, and native launch check passed in [GitHub Actions run 43945853147](https://github.com/wandersonsc/basilisk-control/actions/runs/43945853147). The packaged app’s checksums and archive integrity were also checked after download. Physical mouse behavior still requires hardware testing.
