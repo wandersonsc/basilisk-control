@@ -1,0 +1,23 @@
+name: Feature request
+description: Suggest an improvement and explain the problem it solves.
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: "Describe your use case and any current workaround."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: "Describe the change and how you would use it."
+    validations:
+      required: true
+  - type: textarea
+    id: hardware
+    attributes:
+      label: Hardware or protocol information
+      description: "Optional. Include public protocol references and connection/firmware details, without device serial numbers."

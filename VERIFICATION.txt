@@ -1,0 +1,19 @@
+Verification for Basilisk Control 0.1.0
+
+Passed in this Linux environment:
+- C packet tests: fixed wire fixtures, every DPI increment from 100 to 20,000,
+  polling rate encoding, brightness limits, malformed lengths and checksums,
+  busy/stale frames, and firmware errors.
+- Portable C sources compile with -Wall -Wextra -Werror -pedantic.
+- All five Swift source files parse without syntax errors using tree-sitter-swift.
+  Parsing does not check Swift types or macOS framework APIs.
+- Shell build script syntax and Info.plist structure validated.
+- ICNS icon file inspected.
+
+Not verified here:
+- Native macOS compilation, application launch, code signing, and UI rendering.
+- USB/HID access, firmware behavior, battery readings, or physical mouse controls.
+- Included macOS CI workflow has not been run.
+
+Build App.command runs the packet tests and compiles the app on your Mac.
+See README.md for setup, feature scope, and the first hardware test procedure.

@@ -1,0 +1,49 @@
+name: Bug report
+description: Report a reproducible problem with the app or device controls.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: "Remove serial numbers, credentials, and personal data. For suspected vulnerabilities, follow SECURITY.md instead of posting details here."
+  - type: input
+    id: version
+    attributes:
+      label: App version or commit
+      placeholder: "0.1.0 or commit SHA"
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: macOS version and Mac architecture
+      placeholder: "macOS version; Apple Silicon or Intel"
+    validations:
+      required: true
+  - type: dropdown
+    id: connection
+    attributes:
+      label: Connection
+      options:
+        - USB data cable (1532:0086)
+        - 2.4 GHz receiver (1532:0088)
+        - Both connected
+        - Not applicable
+    validations:
+      required: true
+  - type: input
+    id: firmware
+    attributes:
+      label: Mouse firmware (if known)
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: "Describe what you did, the expected result, and the actual result."
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Relevant error or diagnostic output
+      description: "Paste only relevant output, with personal data removed. Mention other running mouse utilities."
+      render: text
