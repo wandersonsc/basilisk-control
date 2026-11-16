@@ -2,7 +2,7 @@
 import SwiftUI
 
 private let accent = Color(red: 0.42, green: 0.94, blue: 0.65)
-private let background = Color(red: 0.055, green: 0.065, blue: 0.075)
+private let canvasColor = Color(red: 0.055, green: 0.065, blue: 0.075)
 
 enum Page: String, CaseIterable {
     case performance = "Performance", lighting = "Lighting", presets = "Presets", connection = "Connection"
@@ -51,7 +51,7 @@ struct ContentView: View {
                 .padding(32)
             }
         }
-        .background(background).tint(accent)
+        .background(canvasColor).tint(accent)
         .frame(minWidth: 920, minHeight: 700)
     }
 

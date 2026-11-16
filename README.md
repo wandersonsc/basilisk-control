@@ -4,7 +4,15 @@ A native SwiftUI app for the **Razer Basilisk Ultimate**, with direct USB HID co
 
 [Build checks](https://github.com/wandersonsc/basilisk-control/actions) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Repository practices](docs/REPOSITORY_BEST_PRACTICES.md) · [MIT](LICENSE)
 
-**Delivery status:** complete source project, not a precompiled or notarized application. Packet tests were run on Linux. This environment cannot compile SwiftUI or access your mouse, so the macOS build, HID transport, and physical device behavior remain unverified. Treat version 0.1 as an initial hardware-testing release.
+**Delivery status:** initial hardware-testing version. Packet tests pass on Linux. GitHub Actions builds a universal macOS app, verifies its local signature, and checks that it launches; check the latest run for results. The HID transport and physical device behavior still need verification with your mouse. The app is not Apple notarized.
+
+## Download a built app
+
+Open [GitHub Actions](https://github.com/wandersonsc/basilisk-control/actions/workflows/macos.yml) and select a successful **Native macOS build** run for `main`. Under **Artifacts**, download **Basilisk-Control-macOS-universal** while signed in to GitHub. Artifacts are retained for 30 days.
+
+Extract the artifact, then extract `Basilisk-Control-macOS.zip` to get **Basilisk Control.app**. Move it to Applications. The universal executable supports Apple Silicon and Intel Macs running macOS 13+. The adjacent `.sha256` file contains its checksum; run `shasum -a 256 -c Basilisk-Control-macOS.zip.sha256` from the extracted artifact folder to check the download.
+
+The app is locally ad-hoc signed, not notarized. If macOS blocks it, review this project and use **System Settings → Privacy & Security → Open Anyway** if you trust it. Physical device controls are not validated by the CI launch test.
 
 ## Build and open on your Mac
 
@@ -26,6 +34,8 @@ Requires **macOS 13 or newer**, and **Xcode 15+ command line tools with Swift 5.
 The app is locally ad-hoc signed, not Apple notarized. If macOS blocks a file you downloaded, review it and use **System Settings → Privacy & Security → Open Anyway** if you trust it. Do not disable Gatekeeper systemwide. If macOS denies HID access, enable **Basilisk Control** in **Privacy & Security → Input Monitoring**, then quit and reopen it. The Connection screen includes a shortcut.
 
 You can also open `Package.swift` in Xcode to inspect and build the source. Use the build script to create the installable bundle with its icon and identity.
+
+For a noninteractive build, run `./scripts/build-app.sh`. Add `--universal` to compile both Mac architectures and combine them into one app. The script creates the app, a ZIP preserving its executable permissions, and a SHA-256 checksum in `dist/`.
 
 ## Controls
 
@@ -60,7 +70,7 @@ Run packet tests on macOS or Linux:
 ./test-protocol.sh
 ```
 
-Tests cover fixed wire fixtures, all supported DPI increments, polling mappings, brightness limits, malformed replies, checksum corruption, stale/busy replies, and firmware error statuses. The included GitHub Actions workflow compiles the native app on a macOS runner when used in a repository; that workflow has not been run as part of this delivery. Physical tests above are still necessary.
+Tests cover fixed wire fixtures, all supported DPI increments, polling mappings, brightness limits, malformed replies, checksum corruption, stale/busy replies, and firmware error statuses. GitHub Actions runs the packet tests on Linux and macOS, builds both Mac architectures, verifies the app’s signature and bundle metadata, checks launch on its host architecture, and uploads the packaged app after those checks pass. Physical tests above are still necessary.
 
 ## Protocol references and license
 

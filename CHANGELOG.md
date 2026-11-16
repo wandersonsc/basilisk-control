@@ -10,6 +10,11 @@ Document user-visible changes here. Entries under Unreleased are not a published
 - DPI and polling controls with readback, lighting commands, battery/charging readings, local presets, and menu bar controls.
 - Portable packet tests and a local application bundle build script.
 - Contributing and security guidance, a code of conduct, issue and PR templates, repository setup guidance, and CI checks.
+- Universal Apple Silicon/Intel app packaging with local signing, a SHA-256 checksum, a CI launch check, and downloadable build artifacts.
+
+### Fixed
+
+- Renamed the canvas color to avoid a name collision with SwiftUI’s `background` method during compilation.
 
 ### Verification
 
